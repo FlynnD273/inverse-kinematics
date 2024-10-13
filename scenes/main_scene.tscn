@@ -5,6 +5,7 @@
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_77b8a")
+point_count = 4.0
 joint_length = 100.0
 iteration_count = 1000
 

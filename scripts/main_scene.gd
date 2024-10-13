@@ -1,13 +1,14 @@
 extends Node2D
 
 var points: Array[Control]
+@export var point_count: float = 3
 @export var joint_length: float = 50
 @export var iteration_count: int = 2
 
 func _ready() -> void:
   var dot_scene: PackedScene = load("res://scenes/dot.tscn")
   points = []
-  for i in range(5):
+  for i in range(point_count):
     var dot: Control = dot_scene.instantiate()
     dot.position = Vector2(randi_range(20, 600), randi_range(20, 600))
     $Dots.add_child(dot)
