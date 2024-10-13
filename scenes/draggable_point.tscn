@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfslsgvwonwcl"]
+
+[ext_resource type="Script" path="res://scripts/draggable_point.gd" id="1_bv10x"]
+[ext_resource type="Texture2D" uid="uid://cjbv3fe1xnc0u" path="res://images/dot.svg" id="1_cj7it"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1j3w8"]
+radius = 25.0
+
+[node name="DraggablePoint" type="Control"]
+layout_mode = 3
+mouse_default_cursor_shape = 6
+script = ExtResource("1_bv10x")
+
+[node name="Dot" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_cj7it")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1j3w8")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

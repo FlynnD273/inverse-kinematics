@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf2jkjkjs76dw"]
+
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_77b8a"]
+[ext_resource type="PackedScene" uid="uid://cfslsgvwonwcl" path="res://scenes/draggable_point.tscn" id="1_lrtf4"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_77b8a")
+joint_length = 100.0
+iteration_count = 1000
+
+[node name="Lines" type="Line2D" parent="."]
+width = 5.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Dots" type="Node" parent="."]
+
+[node name="Start" parent="." instance=ExtResource("1_lrtf4")]
+modulate = Color(0.64, 0.886, 1, 1)
+anchors_preset = 0
+offset_left = 280.0
+offset_top = 223.0
+offset_right = 280.0
+offset_bottom = 223.0
+
+[node name="End" parent="." instance=ExtResource("1_lrtf4")]
+modulate = Color(1, 0.64, 0.64, 1)
+anchors_preset = 0
+offset_left = 514.0
+offset_top = 316.0
+offset_right = 514.0
+offset_bottom = 316.0
+
+[node name="Pole" parent="." instance=ExtResource("1_lrtf4")]
+modulate = Color(0.64, 1, 0.67, 1)
+anchors_preset = 0
+offset_left = 424.0
+offset_top = 122.0
+offset_right = 424.0
+offset_bottom = 122.0

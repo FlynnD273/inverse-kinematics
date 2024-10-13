@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://rifdjisg8pv6"]
+
+[ext_resource type="Texture2D" uid="uid://cjbv3fe1xnc0u" path="res://images/dot.svg" id="1_q2fas"]
+
+[node name="Dot" type="Control"]
+layout_mode = 3
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_q2fas")
