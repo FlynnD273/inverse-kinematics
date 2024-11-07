@@ -9,7 +9,6 @@ var dot_scene: PackedScene = preload("res://scenes/dot.tscn")
 func _ready() -> void:
   for i in range(point_count):
     var dot: Control = dot_scene.instantiate()
-    dot.position = Vector2(randi_range(20, 600), randi_range(20, 600))
     $Dots.add_child(dot)
 
 
@@ -36,9 +35,15 @@ func _process(_delta: float) -> void:
       )
   points[0].position = $Start.position
 
-  var offset: Vector2 = ($Pole.position - $Start.position).normalized() * joint_length
+  var offset: Vector2 = (
+    ($Pole.position - $End.position.lerp($Start.position, 0.5)).normalized()
+    * joint_length
+  )
   for i in range(1, points.size()):
-    points[i].position = points[i - 1].position + offset
+    if i < points.size() / 2.0:
+      points[i].position = $Pole.position + offset * i
+    else:
+      points[i].position = $Pole.position + offset * (points.size() - i)
     points[i].show()
   for _iter in range(iteration_count):
     points[-1].position = $End.position
@@ -72,7 +77,6 @@ func _on_segment_count_slider_value_changed(value: float) -> void:
   if new_count > point_count:
     for i in range(new_count - point_count):
       var dot: Control = dot_scene.instantiate()
-      dot.position = Vector2(randi_range(20, 600), randi_range(20, 600))
       $Dots.add_child(dot)
   else:
     var points := $Dots.get_children()

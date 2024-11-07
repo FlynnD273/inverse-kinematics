@@ -58,8 +58,7 @@ script = ExtResource("3_d7x8b")
 [node name="IterationsSlider" type="HSlider" parent="Sliders"]
 layout_mode = 2
 min_value = 1.0
-max_value = 1000.0
-value = 1000.0
+value = 100.0
 script = ExtResource("2_wmlij")
 
 [node name="Label3" type="Label" parent="Sliders"]
