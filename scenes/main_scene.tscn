@@ -1,13 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf2jkjkjs76dw"]
+[gd_scene load_steps=5 format=3 uid="uid://bf2jkjkjs76dw"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_77b8a"]
 [ext_resource type="PackedScene" uid="uid://cfslsgvwonwcl" path="res://scenes/draggable_point.tscn" id="1_lrtf4"]
+[ext_resource type="Script" path="res://scripts/init_slider.gd" id="2_wmlij"]
+[ext_resource type="Script" path="res://scripts/slider_label.gd" id="3_d7x8b"]
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_77b8a")
 point_count = 4.0
 joint_length = 100.0
 iteration_count = 1000
+
+[node name="Sliders" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="LengthSlider" type="HSlider" parent="Sliders"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = 10.0
+max_value = 500.0
+step = 0.0
+value = 100.0
+script = ExtResource("2_wmlij")
+
+[node name="Label" type="Label" parent="Sliders"]
+layout_mode = 2
+text = "Length: "
+script = ExtResource("3_d7x8b")
+
+[node name="SegmentCountSlider" type="HSlider" parent="Sliders"]
+layout_mode = 2
+min_value = 2.0
+value = 4.0
+script = ExtResource("2_wmlij")
+
+[node name="Label2" type="Label" parent="Sliders"]
+layout_mode = 2
+text = "Segments: "
+script = ExtResource("3_d7x8b")
+
+[node name="IterationsSlider" type="HSlider" parent="Sliders"]
+layout_mode = 2
+min_value = 1.0
+max_value = 1000.0
+value = 1000.0
+script = ExtResource("2_wmlij")
+
+[node name="Label3" type="Label" parent="Sliders"]
+layout_mode = 2
+text = "Iterations: "
+script = ExtResource("3_d7x8b")
 
 [node name="Lines" type="Line2D" parent="."]
 width = 5.0
@@ -15,7 +73,8 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Dots" type="Node" parent="."]
+[node name="Dots" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="Start" parent="." instance=ExtResource("1_lrtf4")]
 modulate = Color(0.64, 0.886, 1, 1)
@@ -40,3 +99,7 @@ offset_left = 424.0
 offset_top = 122.0
 offset_right = 424.0
 offset_bottom = 122.0
+
+[connection signal="value_changed" from="Sliders/LengthSlider" to="." method="_on_length_slider_value_changed"]
+[connection signal="value_changed" from="Sliders/SegmentCountSlider" to="." method="_on_segment_count_slider_value_changed"]
+[connection signal="value_changed" from="Sliders/IterationsSlider" to="." method="_on_iterations_slider_value_changed"]
